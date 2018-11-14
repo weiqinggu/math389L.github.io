@@ -1,0 +1,144 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Math 389L</title>
+    <meta name="description" content="Claremont Graduate University Advanced Big Data Analysis Spring 2019">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="body">
+        <div class="header">
+            <h2>
+                <a href="index.html">
+                    <img style="height:1.05em;" src="img/logo.svg">
+                    <span id="title">Math 389L</span>
+                </a>
+            </h2>
+            <h3>
+                <a href="index.html">Schedule</a> |
+                <a href="info.html" id="underline">Info</a>
+            </h3>
+        </div>
+
+        <div class="main">
+            <a name="info"></a><h3>Advanced Big Data Analysis</h3>
+            <p id="spacing">
+                Math 389L, Spring 2019</br>
+                Claremont Graduate University</br>
+                Professor: <span style="display:inline-block;width:3.7em;"></span><a href="mailto:gu@g.hmc.edu">Weiqing Gu</a></br>
+                Teaching Assistant: <a href="mailto:cdipaolo@g.hmc.edu">Conner DiPaolo</a>
+            </p>
+
+            <h4>Meeting Time</h4>
+            <pre>T 07:00-09:50PM. Burkle 14</pre>
+
+            <h4>Course Description</h4>
+            <p>
+                This graduate level course is designed to give students a snapshot of recent techniques used to analyze,
+                statistically and algorithmically, extremely large datasets. To accomplish this goal, the course
+                will start with an applied and quick introduction to necessary optimization background. From there
+                we will introduce students to topics such as spectral graph clustering, fast kernel
+                methods, compressed sensing, among others. We will highlight applications of these methods to diverse
+                areas such as genomics and recommender systems, but the bedrock of the course will be theory.
+                To that end, students are expected to have a solid foundation in probability and analysis, as well
+                as comfort with algorithmic thinking.
+            </p>
+
+            <h4>Textbooks</h4>
+            <p>
+                <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd, S., & Vandenberghe, L. (2004). Convex optimization. Cambridge university press.</a></br></br>
+                <a href="https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf">Vershynin, R. (2018). High-dimensional probability: An introduction with applications in data science. Cambridge University Press.</a></br></br>
+                <a href="https://arxiv.org/abs/1411.4357.pdf">Woodruff, D. P. (2014). Sketching as a tool for numerical linear algebra. Foundations and Trends in Theoretical CS.</a>
+            </p>
+
+            <h4>Grading</h4>
+            <ul>
+                <li>35% Homework</li>
+                <li>30% Midterm Project</li>
+                <li>35% Final Project</li>
+                <li>[Up to 5% Extra Credit]</li>
+            </ul>
+
+            <h4>Homework</h4>
+            <p>
+                Problem sets will be due (virtually) every week, on Tuesday in class.
+                Usually there will be 4 problems per week. Problems will require coding.
+                For this we recommend either Python (eg. using <a href="numpy.org">numpy</a> and <a href="scipy.org">scipy</a>),
+                Matlab, or R.
+            </p>
+
+            <a name="midterm"></a>
+            <h4>Midterm Project</h4>
+            <p>
+                Details given in class, but this will reflect the final project in nature. If the final project
+                is to be a continuation of the midterm project (which is expected), significant additional progress
+                must be made.
+            </p>
+
+            <a name="final-project"></a>
+            <h4>Final Project</h4>
+            <p>
+                The final project is intended to give students, in groups of 2-3, the opportunity to deep-dive
+                into a specific area of
+                interest in linear algebra or matrix analysis. This could be theoretical or applied, but in both cases
+                should be originated from a single question. For example, such questions might be:
+                <ul>
+                    <li>Can we achieve as good <em>empirical</em> performance as deep neural networks by using Gaussian Process methods?</li>
+                    <li>Can we cluster on sketched data in metrics other than the L2 norm?</li>
+                    <li>Can we use sketched data to solve logistic regression problems?</li>
+                    <li>How can we estimate the spectral norm of a matrix using limited space?</li>
+                    <li>Which properties of matrices can we approximate only by testing a few inputs?</li>
+                    <li>How can large scale linear system solvers from numerical linear algebra be used to speed up kernel methods?</li>
+                </ul>
+                This motivating question will be turned in as the single sentence alone, typed and stapled onto the back
+                of their midterm project. Students
+                are encouraged to discuss their ideas with teaching staff before committing to a question.
+                Staff can also help students less fluent in the field to find topics that might intersect
+                their interests. Questions should be quite focused.
+            </p>
+            <p>
+                About a month after proposing their initial question, students will submit a literature review
+                of work that attempts to answer their question. This will be at <em>most</em> four pages in
+                LaTeX, one inch margins, not including references. The review should include important definitions,
+                discuss the body of work surrounding the question. At the top of the paper, as an abstract, the
+                student should include a refined version of their motivating question.
+            </p>
+            <p>
+                By the end of the course, students are expected to continue investigating their question.
+                In particular, students should be able to find a concrete open problem in the area
+                or blind spot in the research body. (Hint: look at the end of recent papers).
+                Open problems can be empirical (e.g. investigating the geometry of neural network loss surfaces
+                through the spectral information in the Hessians), applied theory (e.g. creating algorithms for robust
+                low rank approximation), or theoretical (e.g. lower bounds on robust low rank approximation).
+            </p>
+            <p>
+                Before the end of the course, using this prior work on the project, the student will
+                create a paper of at <em>least</em> 12 pages that details the background and progress of the research body
+                on their open problem, promising directions, and demonstrations of results (computations or proofs).
+                If the student is able to solve or even make concrete progress towards the open problem they will
+                get an A on the final paper. Otherwise, experimental evidence towards their open problem is expected.
+                The group will also give a presentation of at most 15 minutes detailing this adventure.
+            </p>
+
+            <h5>Deadlines</h5>
+            <ul>
+                <li>(Mar 5) Motivating question. Hand in stapled onto back of midterm project.</li>
+                <li>(Apr 2) Literature Review. Turn into Prof Gu's office before 6:00pm.</li>
+                <li>(May 7) Presentation; Final Report due in class.</li>
+            </ul>
+
+
+            <h4>Disabilities</h4>
+            <p>
+                Students who need disability-related accommodations are
+                encouraged to discuss this with the instructor as soon as possible.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Math 389L</title>
+    <meta name="description" content="Claremont Graduate University Advanced Big Data Analysis Spring 2019">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="body">
+        <div class="header">
+            <h2>
+                <a href="index.html">
+                    <img style="height:1.05em;" src="img/logo.svg">
+                    <span id="title">Math 389L</span>
+                </a>
+            </h2>
+            <h3>
+                <a href="index.html" id="underline">Schedule</a> |
+                <a href="info.html">Info</a>
+            </h3>
+        </div>
+
+        <div class="main">
+            <table>
+                <tr>
+                    <th>Week</th>
+                    <th>Topic</th>
+                    <th>Due</th>
+                </tr>
+                <tr>
+                    <td> January 22</br>
+                    </td>
+                    <td>
+                        Overview. Review of key concepts from machine learning and statistics.
+                        Canonical examples of large data problems; associated technical and ethical concerns
+                        (genomics, recommender systems, advertising).
+                    </td>
+                    <td>Nothing.</td>
+                </tr>
+                <tr>
+                    <td> January 29</br>
+                    </td>
+                    <td>
+                        Convex sets and functions. Standard classes of convex optimization problems.
+                        Specific examples and an overview of associated computational complexity.
+                        Exponential lower bounds on generic optimization problems.
+                    </td>
+                    <td>Read: Boyd Chapter 4.</br>
+                        <a href="hw/pset1.pdf">Problem Set 1</a>. (<a href="hw/pset1.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> February 5</br>
+                    </td>
+                    <td>
+                        Large scale convex optimization problems and relation to our canonical settings.
+                        Stochastic methods (eg. SGD) and a proof of
+                        convergence. Large scale least squares problems via sketching and leverage score sampling.
+                    </td>
+                    <td>Read: Woodruff introduction.</br>
+                        <a href="hw/pset2.pdf">Problem Set 2</a>. (<a href="hw/pset2.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> February 12</br>
+                    </td>
+                    <td>
+                        Compressed sensing and application to genomics. Multiple testing and statistical concerns.
+                        Proof of correctness for Gaussian design matrices. Various algorithms.
+                    </td>
+                    <td>Watch: <a href="https://youtu.be/6ZNLGTfbo7g">this lecture</a>.</br>
+                        <a href="hw/pset3.pdf">Problem Set 3</a>. (<a href="hw/pset3.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> February 19</br>
+                    </td>
+                    <td>
+                        Lagrange Duality. Duality gaps and Slater's Condition. Duals of common optimization problems.
+                        Duality based optimization algorithms
+                        (mirror descent), and applications to better primal optimization (optimization on simplex).
+                    </td>
+                    <td>Read: Boyd Chapter 5.</br>
+                        <a href="hw/pset4.pdf">Problem Set 4</a>. (<a href="hw/pset4.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> February 26</br>
+                    </td>
+                    <td>
+                        Non-convex optimization problems and prevalence of use.
+                        Provably solveable non-convex problems.
+                        Deep neural networks and related techniques
+                        (Word2Vec).
+                    </td>
+                    <td>Read: <a href="https://arxiv.org/pdf/0903.3131.pdf">this paper</a></br>
+                        Read: <a href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">this paper</a>.</br>
+                        <a href="hw/pset5.pdf">Problem Set 5</a>. (<a href="hw/pset5.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> March 5</br>
+                    </td>
+                    <td>
+                        Optimization algorithms in the non-convex setting (Adam, saddle point aversion,
+                        ...) and recent guarantees. Provably solveable non-convex problems. Applications
+                        to recommender systems.
+                    </td>
+                    <td>Read: <a href="https://ganguli-gang.stanford.edu/pdf/14.SaddlePoint.NIPS.pdf">this paper</a>.</br>
+                        Read: <a href="https://arxiv.org/pdf/1602.04915.pdf">this paper</a>.</br>
+                        Work on midterm project.
+                    </td>
+                </tr>
+                <tr>
+                    <td> March 12 </br>
+                    </td>
+                    <td>
+                        High capacity convex alternatives to deep models (Gaussian Processes and kernel methods) and associated
+                        comptuational drawbacks. Preconditioned kernel machine solvers and trace estimation to relieve these
+                        difficulties.
+                    </td>
+                    <td>Read: <a href="https://arxiv.org/pdf/1602.06693.pdf">this paper</a>.</br>
+                        <a href="info.html#midterm">Midterm project.</a></td>
+                </tr>
+                <tr>
+                    <td> March 19</br> (no class)
+                    </td>
+                    <td>
+                    </td>
+                    <td>Enjoy Spring Break!</td>
+                </tr>
+                <tr>
+                    <td> March 26</br>
+                    </td>
+                    <td>
+                        Review of concentration. Some key results from non-asymptotic random matrix theory.
+                        Associated random graphs (stochastic block model) and spectral algorithms
+                        for graph clustering.
+                    </td>
+                    <td>Read: Vershynin Chapter 4.</br>
+                        <a href="hw/pset6.pdf">Problem Set 6</a>. (<a href="hw/pset6.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> April 2</br>
+                    </td>
+                    <td>
+                        Clustering. Simple algorithms for NP-hard problems: k-means, k-medians, and k-means++. Gaussian mixture
+                        models. Spectral clustering algorithms for guaranteed clustering of two component mixure models.
+                    </td>
+                    <td>Read: <a href="http://theory.stanford.edu/~sergei/papers/kMeans-socg.pdf">this paper</a>.</br>
+                        Read: <a href="https://www.cs.cornell.edu/home/kleinber/nips15.pdf">this paper</a>.</br>
+                        <a href="hw/pset7.pdf">Problem Set 7</a>. (<a href="hw/pset7.tex">tex</a>)</br>
+                        <a href="info.html#final-project">Literature Review.</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td> April 9</br>
+                    </td>
+                    <td>
+                        Matrix completion redux. SVD and provable recovery of observed sparse, low rank matrices.
+                        Computational considerations and faster iterative algorithms.
+                    </td>
+                    <td>Read: Vershynin Chapter 6.</br>
+                        <a href="hw/pset8.pdf">Problem Set 8</a>. (<a href="hw/pset8.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> April 16
+                    </td>
+                    <td>
+                        CUR decomposition via leverage score sampling. Sparsity preservation,
+                        interpretability, and other advantages over SVD. Applications
+                        to genomics and recommender systems.
+                    </td>
+                    <td>Read: <a href="https://web.stanford.edu/group/mmds/slides/mahoney-mmds.pdf">these slides</a>.</br>
+                        <a href="hw/pset9.pdf">Problem Set 9</a>. (<a href="hw/pset9.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> April 23</br>
+                    </td>
+                    <td>
+                        More streaming algorithms; the turnstile model.
+                        Counting large numbers with very little memory (Morris' algorithm).
+                        Lower bounds for number storage.
+                    </td>
+                    <td>Read: <a href="https://people.csail.mit.edu/indyk/Rice/lec1.pdf">these slides.</a></br>
+                        <a href="hw/pset10.pdf">Problem Set 10</a>. (<a href="hw/pset10.tex">tex</a>)
+                    </td>
+                </tr>
+                <tr>
+                    <td> April 30</br>
+                    </td>
+                    <td>
+                        Approximate matrix multiplication in the turnstile model via sketching.
+                        Associated lower bound.
+                    </td>
+                    <td>Read: Woodruff Section 2.2</br>
+                        Work on final project.
+                    </td>
+                </tr>
+                <tr>
+                    <td> May 7</br>
+                    </td>
+                    <td>
+                        Final Project Presentations.
+                    </td>
+                    <td><a href="info.html#final-project">Final projects.</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
