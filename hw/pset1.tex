@@ -1,0 +1,73 @@
+\documentclass[12pt,letterpaper,cm]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm2e}
+\usepackage{enumerate}
+
+% info for header block in upper right hand corner
+\name{\_\_\_\_\_\_\_\_}
+\class{Math 389L}
+\assignment{Problem Set 1}
+\duedate{Tuesday, January 29, 2018}
+\setlength\parindent{0pt}
+
+\newcommand\R{\mathbb{R}}
+\newcommand\I{\boldsymbol{I}}
+\newcommand\x{\boldsymbol{x}}
+\newcommand\y{\boldsymbol{y}}
+
+% Convex sets and functions. Standard classes of convex optimization problems. Specific examples and an overview of associated computational complexity. Exponential lower bounds on generic optimization problems. Boyd Chapter 4
+
+\begin{document}
+
+\textbf{Note:} The purpose of this problem set is to motivate convex optimization, as well as introducing you to common tools used in analyzing the performance or fundamental limits of optimization algorithms. As you will see, optimizing a generic function is hard in a meaningful sense, yet optimizing so-called `convex' functions is quite easy. Since convex functions are surprisingly ubiquitous in the area of machine learning and statistics, it's important to know these potentially surprising properties.
+
+\begin{problem}[1]
+    Suppose we wish to minimize a continuous function $f : [0,1] \to \R$ via an algorithm which sequentially queries $f(x_i)$ at points $x_1,x_2,\ldots,x_n\in [0,1]$ before reporting some $\overline x\in[0,1]$ that is intended to approximate the minimizer $x^\star\in[0,1]$ with $f(x^\star) = \min_{x\in[0,1]}f(x)$. In the \emph{oracle} model of computation, we measure the number of queries $n$ (the \emph{sample complexity}) to our function needed to ensure that $f(\overline x) < f(x^\star) + \epsilon$ for some $\epsilon > 0$ as a way to indicate the complexity of our algorithm. Such an $\overline x$ is known as an $\epsilon$-approximate minimizer, and since in this setting we are only given information about the function value (and not, say, the derivative at each $x_i$ as well) this is known as a \emph{zero-th order oracle}. We will prove that any algorithm which returns an $\epsilon$-approximate minimizer of a continuous function $f : [0,1] \to \R$ (in particular, a polynomial) has infinite sample complexity via a technique known as a \emph{resisting oracle}. Flesh out the following sketch (and in particular, construct $q$):\\
+
+    Suppose by way of contradiction that we have an algorithm which can find an $\epsilon$-approximate minimizer to any continuous function using at most $n < \infty$ queries to the oracle. In an attempt to `trick' the algorithm into thinking that an input $f$ is the zero function, suppose our oracle returns $f(x_i) = 0$ for all $x_1,x_2,\ldots,x_n$ and consider the resulting $\overline x$. Since the algorithm is deterministic, it must return a fixed $\overline x$, yet we can construct a polynomial $q:[0,1]\to\R$ which satisfies $q(x_1)=\cdots=q(x_n)=q(\overline x)=0$ yet $\min_{x\in[0,1]}q(x) = -\epsilon$. This contradicts the fact that our algorithm supposedly guaranteed that $0 = q(\overline x) < q(x^\star) + \epsilon = 0$, and hence the sample complexity of such an algorithm is \emph{at least} $n$. But since $n$ was an arbitrary natural number, this means that sample complexity is infinite, and one cannot hope to minimize an arbitrary continuous (even analytic) function without querying a dense subset of the domain and effectively determining the function uniquely.
+\end{problem}
+
+\begin{solution}
+    \vfill
+\end{solution}
+\clearpage
+
+\begin{problem}[2]
+    Prove that any algorithm which returns an $\epsilon$-approximate minimizer of a function $f : [0,1]^n \to \R$ with $|f(\x) - f(\y)| \leq L \|\x-\y\|_\infty$ requires at least $\bigl(\bigl\lfloor \tfrac{L}{2\epsilon} \bigr\rfloor\bigr)^n$ queries in the zero-th order oracle model if $\epsilon < L/2$.
+\end{problem}
+
+\begin{solution}
+    \vfill
+\end{solution}
+\clearpage
+
+\begin{problem}[3]
+    Suppose that $f : \mathbb{R}^n\to\R$ is twice differentiable, and that the eigenvalues $\lambda_i(x)$ of the Hessian $\nabla^2 f(x)$ are uniformly bounded between $0 < \ell < \lambda_i(x) < L$ across all of $\R^n$. Such a function is known as \emph{$\ell$-strongly convex} Consider the following algorithm, known as \emph{gradient descent}, which finds
+    an approximation $x_T$ to a global minimizer $x^*$ of $f$.
+    
+    \begin{algorithm}[H]
+        \KwData{An arbitrary starting point $x_0\in\R^n$, a step size
+        $0 < \alpha < 2/L$, and a maximum number of iterations $T\in\mathbb{N}$.}
+        \KwResult{An approximate global minimizer $x_T\in\R^n$ to $f$.}
+        
+        \For{$t=1,2,\ldots,T$}{
+            $x_t = x_{t-1} - \alpha\nabla f(x_{t-1})$
+        }
+    \end{algorithm}
+
+    Prove that if $\tfrac{1-q}{\ell}\leq \alpha \leq \tfrac{1+q}{L}$ for some $0 < q < 1$ then the global minimizer $x^*$ is unique and
+    \[
+        \|x_T - x^*\|_2 \leq \frac{\alpha q^T}{1-q} \|\nabla f(x_0)\|_2 \leq \frac{2}{L}\frac{q^T}{1-q}\|\nabla f(x_0)\|_2.
+    \]
+    That is to say that if we want $\|x_T - x^*\|_2 \leq \epsilon$ then we can just set
+    $$T \geq \log(\tfrac{1}{q})^{-1} \log\biggl(\frac{2\|\nabla f(x_0)\|_2}{\epsilon L (1-q)}\biggr)$$
+    to guarantee this\footnote{It turns out that this is the best convergence rate you could
+    hope for with this class of functions $f$. [Arjevani2016]}.
+    \emph{Hint} Define $F(x) = x - \alpha\nabla f(x)$. Prove that the eigenvalues $\gamma_i(x)$
+    of the Jacobian $\nabla F(x)$ are always bounded above by $q$: $|\gamma_i(x)|\leq q$. Apply
+    the Banach Fixed Point Theorem from analysis.
+\end{problem}
+
+\end{document}
