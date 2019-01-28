@@ -57,7 +57,7 @@
         \item Prove via strong convexity that $\inner{\nabla f(\x_t), \x_t - \x} \geq \ell \|\x_t - \x\|_2^2$.
         \item Prove $\E \|\x_{t+1} - \x\|_2^2 \leq (1-2\ell\alpha_t)\E\|\x_t - \x\|_2^2 + \alpha_t^2G^2$.
         \item Prove that $\E\|\x_t - \x\|_2^2 \leq \tfrac{\max\{\|\x_0 - \x^*\|_2^2,G^2/\ell^2\}}{t}$ when we set $\alpha_{t} = \tfrac{1}{\ell (t+1)}$.
-        \item Give an upper bound on the number of floating point operations it takes to compute an approximate least-squares solution $\tilde \x$ with $\E\|\tilde\x-\x\|\leq \epsilon$ via stochastic gradient descent like in Problem 1. Can sparsity of $\A$ help?
+        \item Give an upper bound on the number of floating point operations it takes to compute an approximate least-squares solution $\tilde \x$ with $\sqrt{\E\|\tilde\x-\x\|_2^2}\leq \epsilon$ via stochastic gradient descent like in Problem 1. Can sparsity of $\A$ help?
         \item In which situations might you prefer to use this method over, say, gradient descent or a traditional exact solver?
     \end{enumerate}
 \end{problem}
