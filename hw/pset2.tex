@@ -1,0 +1,70 @@
+\documentclass[12pt,letterpaper,cm]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm2e}
+\usepackage{enumerate}
+
+% info for header block in upper right hand corner
+\name{\_\_\_\_\_\_\_\_}
+\class{Math 389L}
+\assignment{Problem Set 2}
+\duedate{Tuesday, February 5, 2019}
+\setlength\parindent{0pt}
+
+\newcommand\A{\boldsymbol{A}}
+\renewcommand\b{\boldsymbol{b}}
+\newcommand\x{\boldsymbol{x}}
+\newcommand\y{\boldsymbol{y}}
+\renewcommand\a{\boldsymbol{a}}
+\newcommand\R{\mathbb{R}}
+\newcommand\nnz{\operatorname{nnz}}
+\newcommand\E{\mathbb{E}}
+\newcommand\inner[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\textbf{Note:} This problem set is about linear regression. In particular, we hope to show why traditional methods for solving linear regression problems don't work well as the number of data points $n$ in a data set becomes very large. Two methods (traditional gradient descent and stochastic gradient descent) are proposed to solve these issues and you will analyze their issues. We will talk about more recent developments in the literature on this extremely common problem (matrix sketching and leverage score sampling) in class.
+
+\begin{problem}[1]
+    Given a data matrix $\A\in\R^{n\times p}$ and an output vector $\b$, the least squares problem asks us to find the vector $\x$ which minimizes $f(\x) = \tfrac{1}{2}\|\A\x - \b\|_2^2$. Here we will ask you to analyze the performance of gradient descent applied to solving this problem. For reference, note that exact, stable solutions to the least squares problem take $2np^2 - \tfrac{2}{3}p^3$ floating point operations [GolubVanLoan, Algorithm 5.3.2], though these solutions in general don't take advantage of sparsity in the data matrix $\A$.
+
+\begin{enumerate}[(a)]
+    \item Show that the gradient $\nabla f(\x) = \A^*(\A\x - \b)$ and the Hessian $\nabla^2 f(\x) = \A^*\A$. Conclude that $f$ is $\sigma_{\min}(\A)$-strongly convex.
+    \item How many floating point operations does it take to compute $\nabla f(\x)$ for an arbitrary input $\x\in\R^p$ if we multiply matrices in the traditional way? Write a bound both in terms of the dimensions $n,p$, as well as a different bound in terms of the number of non-zero entries in $\A$ (which we denote $\nnz(\A)$)
+    \item Give an upper bound on the number of floating point operations it takes to compute an approximate least-squares solution $\tilde\x$ with $\|\tilde \x - \x\|\leq \epsilon$ via gradient descent which depends on the actual data $\A$ and $\b$ only through the condition number $\kappa = \sigma_{\max}(\A)/\sigma_{\min}(\A)$, $\sigma_{\min}(\A)$, and $\|\A^*\b\|_2$. Give another bound in terms of $\nnz(\A)$ which is tighter for sparse data matrices. Assume that we start the algorithm at the zero vector $\x_0=0$, and utilize the `optimal' learning rate to minimize your bounds.
+    \item Detail when you would, and would not, want to use this gradient-descent based approach to solving least squares problems over the traditional exact approach.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \vfill
+\end{solution}
+\clearpage
+
+\begin{problem}[2]
+    Observe that we can find the least squares solution $\x$ from Problem 1 by minimizing the rescaled function
+    \[
+        f(\x) = \frac{1}{2n}\sum_{i=1}^n (\a_i^*\x - b_i)^2,\qquad \nabla f(\x) = \frac{1}{n}\sum_{i=1}^n \a_i(\a_i^*\x - b_i)
+    \]
+    where $\a_i$ are the rows of $\A$. To mitigate the linear dependence on $n$ in the previous example we might note that randomly sampling $i$ from $\{1,2,\ldots,n\}$ and giving an approximate gradient descent update
+    \[
+        \x_{t} = \x_{t-1} - \alpha_{t-1}\underbrace{\a_i(\a_i^*\x_{t-1} - b_i)}_{g_k}
+    \]
+    gives the original gradient descent update in expectation while ignoring completely the number of samples $n$. Thus it is natural to think that the algorithm given by replacing the original gradient descent update with this \emph{stochastic gradient} update should perform well, and you will prove that this is true. To do so, we will assume that the $\ell^2$-norm $\sqrt{\E\|g_k\|_2^2} \leq G$ and $f$ is $\ell$-strongly convex (i.e. $\sigma_{\min}(\A)\geq \ell$, or $f(\x) - f(\y) \geq \nabla f(\y)^*(\x-\y) + \tfrac{\ell}{2}\|\x-\y\|_2^2$).
+    
+    \begin{enumerate}[(a)]
+        \item Prove via strong convexity that $\inner{\nabla f(\x_t), \x_t - \x} \geq \ell \|\x_t - \x\|_2^2$.
+        \item Prove $\E \|\x_{t+1} - \x\|_2^2 \leq (1-2\ell\alpha_t)\E\|\x_t - \x\|_2^2 + \alpha_t^2G^2$.
+        \item Prove that $\E\|\x_t - \x\|_2^2 \leq \tfrac{\max\{\|\x_0 - \x^*\|_2^2,G^2/\ell^2\}}{t}$ when we set $\alpha_{t} = \tfrac{1}{\ell (t+1)}$.
+        \item Give an upper bound on the number of floating point operations it takes to compute an approximate least-squares solution $\tilde \x$ with $\E\|\tilde\x-\x\|\leq \epsilon$ via stochastic gradient descent like in Problem 1. Can sparsity of $\A$ help?
+        \item In which situations might you prefer to use this method over, say, gradient descent or a traditional exact solver?
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \vfill
+\end{solution}
+\clearpage
+
+\end{document}
