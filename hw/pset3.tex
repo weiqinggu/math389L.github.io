@@ -1,0 +1,66 @@
+\documentclass[12pt,letterpaper,cm]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm2e}
+\usepackage{enumerate,hyperref}
+
+% info for header block in upper right hand corner
+\name{\_\_\_\_\_\_\_}
+\class{Math 389L}
+\assignment{Problem Set 3}
+\duedate{Tuesday, February 19, 2019}
+\setlength\parindent{0pt}
+
+\newcommand\A{\boldsymbol{A}}
+\renewcommand\S{\boldsymbol{S}}
+\renewcommand\b{\boldsymbol{b}}
+\newcommand\x{\boldsymbol{x}}
+
+\begin{document}
+
+\textbf{Note:} This problem set will be applied. You are asked to submit specific results, but please attach your code to the back of your entire submission (i.e. don't put code in the solution area for every problem, just staple it to the back).\\
+
+Pretend you are working for the Washington D.C. as a data analyst collaborating with the ``Capital Bikeshare'' bikesharing program. Initially, they took bikes away for servicing while people were trying to use the bikes, which drove away customers. Your boss asked you to find the `best' way to take bikes away for routine maintenance in that the fewest number of customers are looking for bikes when they are being serviced. She hands you a somewhat large ($n\sim 18,000$ points and $p=36$ features) matrix $\A\in\mathbb{R}^{n\times p}$ where every row represents an hour in the bike-share system and every column represents a feature like the weather during that hour, as well as the corresponding vector $\b\in\mathbb{R}^n$ of outputs, which are the log-number of users in the bike-share system. See the raw data at \url{github.com/math389L/math389L.github.io/raw/master/data/bikes.csv} as well as a \verb+README+ file at \url{github.com/math389L/math389L.github.io/raw/master/data/bikes.readme.txt}. A sample file in Python which processes the raw data and creates the matrices $\A$ and $\b$ is found at \url{github.com/math389L/math389L.github.io/raw/master/hw/pset3_loading_data.py}. Your task will be to solve the linear regression problem $\min\|\A\x - \b\|_2$ for $\x$ in a number of ways and compare them.
+
+\begin{problem}[1]
+    Solve the least squares problem $\min\|\A\x - \b\|_2$ for the minimizer $\x^\star$ exactly using a built-in method. We will refer to this as $\x^\star$ for the rest of this problem set. Repeating this a number of times, report the average time it takes to compute $\x^\star$ using the built-in method. Answer the following question by looking at $\x^\star$: do people in Washington D.C. tend to use the bikeshare program less when the wind speed increases?
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}[2]
+    Solve the least squares problem $\min\|\A\x - \b\|_2$ for the minimizer $\x_\textsf{chol}$ by using a Cholesky factorization to solve the normal equations $\A^*\A\x = \A^*\b$ explicitly. Report the relative error
+    \[
+        \frac{\|\A\x_\textsf{chol} - \b\|_2}{\|\A\x^\star - \b\|_2}
+    \]
+    of your solution using this method instead of a built-in solver.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}[3]
+    Solve the least squares problem $\min\|\A\x - \b\|_2$ for the minimizer $\x_\textsf{cw}$ by first applying a Clarkson-Woodruff sketch $\S$ to compute $\S\A$ and $\S\b$ before finally using a built-in least squares solver to compute $\x_\text{cw} = \operatorname{arg\,min}\|\S\A\x - \S\b\|_2$. Plot a histogram of 1000 samples of the relative error (approximation ratio)
+    \[
+        \frac{\|\A\x_\textsf{cw} - \b\|_2}{\|\A\x^\star - \b\|_2}
+    \]
+    using this method for $k=50$. Repeat this for $k=75,100,250$. For $k=250$ report the average time it takes on your computer to compute the sketches and solve for $\x_\text{cw}$ and compare this to the time to compute the solution using a built-in solver.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}[4]
+    Solve the least squares problem $\min\|\A\x - \b\|_2$ for the minimizer $\x_\textsf{sgd}$ computed using stochastic gradient descent as we analyzed in Problem 2 of the second problem set. Plot a histogram of 1000 runs of the relative error (approximation ratio)
+    \[
+        \frac{\|\A\x_\textsf{sgd} - \b\|_2}{\|\A\x^\star - \b\|_2}
+    \]
+    using this method for a number of steps $t=50$. Repeat this for $t=500,1000,2500$. For $t=1000$ report the average time it takes on your computer to compute $\x_\textsf{sgd}$ and compare this to the time to compute the solution using a built-in solver, as well as the sketching method used in Problem 3.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\end{document}
