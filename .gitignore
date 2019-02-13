@@ -6,3 +6,4 @@
 soln/*.tex
 soln/*.cls
 notebooks
+.ipynb_checkpoints
