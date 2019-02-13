@@ -5,3 +5,4 @@
 *.log
 soln/*.tex
 soln/*.cls
+notebooks
