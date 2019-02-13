@@ -3,6 +3,7 @@
 *.fdb_latexmk
 *.fls
 *.log
+*.out
 soln/*.tex
 soln/*.cls
 notebooks
