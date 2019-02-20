@@ -2,7 +2,6 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
-\usepackage{algorithm2e}
 \usepackage{enumerate}
 
 % info for header block in upper right hand corner
@@ -14,74 +13,46 @@
 
 \newcommand\m[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand\R{\mathbb{R}}
+\newcommand\A{\boldsymbol{A}}
+\renewcommand\P{\boldsymbol{P}}
+\renewcommand\S{\boldsymbol{S}}
+\newcommand\C{\boldsymbol{C}}
+\renewcommand\H{\boldsymbol{H}}
+\newcommand\D{\boldsymbol{D}}
+\renewcommand\b{\boldsymbol{b}}
 
 \begin{document}
 
-\textbf{Note:} The purpose of this problem is to explore Lagrange duality, and show how it is useful in creating approximations or proving the quality of approximations to computationally expensive problems. Sometimes, as in the second problem, it will be effectively impossible to solve a problem and so duality provides a welcome (approximate) picture of the problem solution without as much computational cost. Other times, as in the last problem, duality gives a method by which we can show how good our approximate solution is to a hard problem. While the actual regression in the last problem is not classically `difficult', these polynomial differences in problem difficulty can become seriously important as our data becomes large, which motivates their study in our class.
 
-\begin{problem}[Boyd 5.28]
-    Prove (without using any linear programming code) that the optimal solution of the LP
-    \begin{align*}
-        \text{minimize: } & 47 x_1 + 93 x_2 + 17x_3 - 93 x_4\\
-        \text{subj. to: } & \m{-1&-6&1&3\\-1&-2&7&1\\0&3&-10&-1\\-6&-11&-2&12\\1&6&-1&-3}\m{x_1\\x_2\\x_3\\x_4}\preceq \m{-3\\5\\-8\\-7\\4}\\
-    \end{align*}
-    is unique, and given by $x^\star = (1,1,1,1)$.
+\begin{problem}[1]
+    Suppose $\A\in\R^{n\times d}$. This problem will ask you to compare the performance of applying different sketches to a matrix. You can check the asymptotics online, but your solutions should provide explicit accounting of the number of flops required to apply these sketches, including relevant constants. Assume we can use the standard algorithms like regular matrix multiplication or fast Fourier/Hadamard transforms, but not fast matrix multiplication like Strassen's algorithm.
+    \begin{enumerate}[(a)]
+        \item How many floating point operations does it take in general to apply the sketch $\S\in\R^{k\times n}$ to find $\S\A$, when $\S$ is a Gaussian sketch? That is, each $\S_{ij} \sim \mathcal{N}(0,\tfrac{1}{k})$ independently.
+        \item How many floating point operations does it take in general to apply the sketch $\S\in\R^{k\times n}$ to find $\S\A$, when $\S$ is a Fast Johnson Lindenstrauss Transformation? That is, $\S = \P\H\D$ where $\D$ is a diagonal matrix with $\D_{ii}\sim \operatorname{Unif}\{\pm 1\}$, $\H$ is an orthonormal Hadamard transformation, and $\P\in\R^{k\times n}$ selects a (uniformly choseen) random subset of $k$ rows.
+        \item How many floating point operations does it take in general to apply the sketch $\S\in\R^{k\times n}$ to find $\S\A$, when $\S$ is a CountSketch/Clarkson-Woodruff Transform?
+    \end{enumerate}
 \end{problem}
 
 \begin{solution}
     \vfill
 \end{solution}
 
-\begin{problem}[Boyd 5.13]
-    A Boolean linear program is an optimization problem of the form
-    \begin{align*}
-        \text{minimize: } & c^*x\\
-        \text{subj. to: } & Ax\preceq b,\\
-        & x_i\in\{0,1\}.
-    \end{align*}
-    Boolean linear programming is NP-complete and, as such, difficult to solve. As an example application, we might wish to perform an $\ell_1$ penalty regression that used no more than 10 features of say 500 available features so as to increase prediction speed; this can be formulated as a boolean LP. Despite the algorithmic challenge, we will derive a formulation which will give an efficient lower bound on the optimal solution above.
-
-    We can rewrite the above LP as
-    \begin{align*}
-        \text{minimize: } & c^*x\\
-        \text{subj. to: } & Ax\preceq b,\\
-        & x_i(1-x_i) = 0.
-    \end{align*}
-    Find the Lagrange dual of this problem and show that it is convex. Thus, the optimal dual value can be efficiently solved and gives a lower bound for the boolean LP problem.
+\begin{problem}[2]
+    Which of the sketches shown in Problem 1 would you want to use when your matrix $\A$ is so large that you are only able to read it row-by-row in one pass to compute $\S\A$? For this sketch, give an algorithm which computes $\S\A$ as you stream over the rows of $\A$ in this manner while using memory independent of $n$ and report the number of floating point operations used.
 \end{problem}
 
 \begin{solution}
     \vfill
 \end{solution}
 
-\begin{problem}[Boyd 5.6]
-    Consider the Chebyshev or $\ell_\infty$-norm regression problem
-    \[
-        \text{minimize } \|Ax-b\|_\infty,
-    \]
-    where $A\in\R^{m\times n}$ and $\operatorname{rank} A = n$. Let $x_\text{ch}$ denote an optimal solution (there may be many).
-
-    Solving the Chebyshev regression problem is slower in general (via linear programming) than solving the least squares problem $x_\text{ls} = \operatorname{arg\,min}\|Ax-b\|_2$. We will check how good of an approximation it is to return $x_\text{ls}$ instead of an actual solution $x_\text{ch}$ for the Chebyshev regression problem. Put another way, we will find bounds on how much larger $\|Ax_\text{ls} - b\|_\infty$ is than $\|Ax_\text{ch} - b\|_\infty$.
-
-\begin{enumerate}[(a)]
-    \item Prove the lower bound $$\|Ax_\text{ls} - b\|_\infty \leq \sqrt{m}\|Ax_\text{ch} - b\|_\infty$$ using standard equivalence-of-norm inequalities.
-    \item The dual of the $\ell_\infty$ regression problem is
-        \begin{align*}
-            \text{maximize: } & b^*\nu\\
-            \text{subj. to: } & \|\nu\|_1\leq 1\\
-            & A^*\nu = 0.
-        \end{align*}
-        Thus $\nu$ in the kernel of $A^*$ with $\ell_1$ norm at most one gives a lower bound $b^*\nu$ on $\|Ax_\text{ch}-b\|_\infty$. Denote the least-squares residual by $r_\text{ls} = b - Ax_\text{ls}$. Assuming $r_\text{ls}\neq 0$, show that
-        \[
-            \hat\nu = -r_\text{ls} / \|r_\text{ls}\|_1,\text{ and } \widetilde\nu = r_\text{ls} / \|r_\text{ls}\|_1
-        \]
-        are both feasible in the dual problem. Which corresponding lower bound on $\|Ax_\text{ch} - b\|_\infty$ is better? How do these compare with the bound derived in part (a)?
-\end{enumerate}
+\begin{problem}[3]
+    In a language of your choice, implement methods to compute $\S\A$ for all three sketching matrices $\S$ from Problem 1 in a way that matches the flop-counts you derived in Problem 1. For the same matrix $\A$ used in the bike-sharing regression problem in Problem Set 3, compute $\S\A$ using each of the methods you implemented and report the average time of computation over 1000 runs. Does the speed ranking match what you would expect based on the theory?
 \end{problem}
 
 \begin{solution}
     \vfill
 \end{solution}
 \clearpage
+
 
 \end{document}
