@@ -1,0 +1,42 @@
+\documentclass[12pt,letterpaper,cm]{hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm2e}
+\usepackage{enumerate}
+
+% info for header block in upper right hand corner
+\name{\_\_\_\_\_\_\_\_}
+\class{Math 389L}
+\assignment{Problem Set 5}
+\duedate{Friday, March 29, 2019}
+\setlength\parindent{0pt}
+
+\newcommand\x{\boldsymbol{x}}
+\newcommand\y{\boldsymbol{y}}
+\renewcommand\b{\boldsymbol{b}}
+\renewcommand\a{\boldsymbol{a}}
+\newcommand\A{\boldsymbol{A}}
+\renewcommand\S{\boldsymbol{S}}
+\newcommand\E{\mathbb{E}}
+\renewcommand\P{\mathbb{P}}
+
+\begin{document}
+
+\begin{problem}
+    Let $\x_1,\x_2,\ldots,\x_n$ be independent Rademacher random variables
+    (that is, $\x_i = \pm 1$ with equal probability) and $\a=(a_1,a_2,\ldots,a_n)$
+    be a sequence of real numbers.
+\begin{enumerate}[(a)]
+    \item Show that $\E e^{s \x_i} = \cosh(s)$.
+    \item Prove that $\cosh(s) \leq e^{s^2/2}$.
+    \item Use (a), (b), and Markov's inequality to prove that $$\P\biggl(\biggl|\sum_{i=1}^n a_i \x_i\biggr| \geq \epsilon\biggr) \leq 2e^{-\tfrac{\epsilon^2}{2\|\a\|_2^2}}.$$ \textit{Hint:} Bound each tail $\P\bigl(\sum a_i \x_i \geq \epsilon\bigr)$ and $\P\bigl(\sum a_i \x_i \leq -\epsilon\bigr)$ separately and use a union bound. Try to use symmetry where possible.
+    \item Conclude that the sum $\sum_{n=1}^\infty \frac{\x_n}{n}$ converges with probability 1 (i.e. almost surely). Remark why this is interesting.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \vfill
+\end{solution}
+
+\end{document}
